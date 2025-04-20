@@ -1,6 +1,6 @@
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-<script src="{{ asset('vendor/filament-qrcode-field/qrcode-scanner.js') }}"></script>
-<div xmlns:x-filament="http://www.w3.org/1999/html">
+@php use Filament\Support\Facades\FilamentAsset; @endphp
+<div xmlns:x-filament="http://www.w3.org/1999/html"
+     x-load-js="['https://unpkg.com/html5-qrcode', @js(FilamentAsset::getScriptSrc('filament-qrcode-field-js', package: 'jeffersongoncalves/filament-qrcode-field'))]">
     <div class="grid gap-y-2">
         <div class="flex items-center gap-x-3 justify-between">
             <label for="{{ $getId() }}" class="fi-fo-field-wrp-label inline-flex items-center gap-x-3">
