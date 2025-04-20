@@ -34,7 +34,7 @@ Once installed, you can use the QrCodeInput component in your Filament forms:
  use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
 
 // In your form definition
-QrCodeInput::make('barcode')
+QrCodeInput::make('qrcode')
     ->required(),
 ```
 
