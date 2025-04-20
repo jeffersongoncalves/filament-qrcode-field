@@ -1,6 +1,6 @@
 {
     "name": "jeffersongoncalves/filament-qrcode-field",
-    "description": "This is a Laravel Filament package that provides a QrCode Field functionality for web applications.",
+    "description": "A Laravel Filament package that provides QR Code field functionality for your web applications. This package extends Filament v3 with a simple QR code input component.",
     "keywords": [
         "jeffersongoncalves",
         "laravel",
