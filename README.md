@@ -20,6 +20,24 @@ You can install the package via composer:
 composer require jeffersongoncalves/filament-qrcode-field
 ```
 
+Publish Assets:
+
+```
+php artisan vendor:publish --tag=filament-qrcode-field-assets
+```
+
+## Usage
+
+Once installed, you can use the QrCodeInput component in your Filament forms:
+
+```php
+ use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
+
+// In your form definition
+QrCodeInput::make('barcode')
+    ->required(),
+```
+
 ## Testing
 
 ```bash
