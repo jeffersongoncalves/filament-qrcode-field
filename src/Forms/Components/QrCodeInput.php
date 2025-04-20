@@ -12,7 +12,7 @@ class QrCodeInput extends TextInput
     {
         parent::setUp();
 
-        $this->placeholder('Enter ' . strtolower($this->getLabel()) . '...');
+        $this->placeholder('Enter '.strtolower($this->getLabel()).'...');
     }
 
     public function icon(string $icon): static
