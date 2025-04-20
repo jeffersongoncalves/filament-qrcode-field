@@ -12,10 +12,8 @@ class QrCodeInput extends TextInput
     {
         parent::setUp();
 
-        // Set default properties for the QrCodeInput
         $this->label('QrCode Input')
-            ->placeholder('Enter qrcode...')
-            ->required();
+            ->placeholder('Enter qrcode...');
     }
 
     public function icon(string $icon): static
