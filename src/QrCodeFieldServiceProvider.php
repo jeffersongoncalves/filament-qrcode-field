@@ -20,7 +20,7 @@ class QrCodeFieldServiceProvider extends PackageServiceProvider
     public function packageBooted(): void
     {
         $assets = [
-            Js::make('filament-qrcode-field-js', __DIR__ . '/../resources/dist/qrcode-scanner.js')->loadedOnRequest(),
+            Js::make('filament-qrcode-field-js', __DIR__.'/../resources/dist/qrcode-scanner.js')->loadedOnRequest(),
         ];
 
         FilamentAsset::register($assets, 'jeffersongoncalves/filament-qrcode-field');
