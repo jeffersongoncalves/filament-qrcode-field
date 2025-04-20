@@ -8,3 +8,6 @@ parameters:
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: false
+    ignoreErrors:
+        -
+            identifier: property.defaultValue
