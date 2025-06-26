@@ -1,4 +1,3 @@
-@php use Filament\Support\Facades\FilamentAsset; @endphp
 <div xmlns:x-filament="http://www.w3.org/1999/html"
      x-load-js="['https://unpkg.com/html5-qrcode']"
      x-data="{
