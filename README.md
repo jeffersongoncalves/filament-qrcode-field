@@ -10,7 +10,12 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jeffersongoncalves/filament-qrcode-field/fix-php-code-style-issues.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/jeffersongoncalves/filament-qrcode-field/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/jeffersongoncalves/filament-qrcode-field.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/filament-qrcode-field)
 
-A Laravel Filament package that provides QR Code field functionality for your web applications. This package extends Filament v3 with a simple QR code input component.
+A Laravel Filament package that provides QR Code field functionality for your web applications. This package extends Filament v4 with a simple QR code input component.
+
+## Requirements
+
+- PHP 8.2 or higher
+- Laravel Filament 4.0 or higher
 
 ## Installation
 
@@ -32,10 +37,16 @@ QrCodeInput::make('qrcode')
     ->required(),
 ```
 
-## Testing
+## Development
+
+You can run code analysis and formatting using the following commands:
 
 ```bash
-composer test
+# Run static analysis
+composer analyse
+
+# Format code
+composer format
 ```
 
 ## Changelog
