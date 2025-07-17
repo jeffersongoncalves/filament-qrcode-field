@@ -53,7 +53,7 @@
 
             <x-slot name="suffix">
                 <!-- Trigger Button for Filament Modal -->
-                <button type="button" @click="openScannerModal()" class="flex items-center pr-3 focus:outline-none"
+                <button type="button" @click="openScannerModal()" class="flex items-center pr-3 focus:outline-hidden"
                         aria-label="Scan QrCode">
                     @if($getExtraAttributes()['icon'] ?? null)
                         <span class="text-gray-400 dark:text-gray-200">
