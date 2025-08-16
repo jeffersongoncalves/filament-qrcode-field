@@ -30,7 +30,7 @@ composer require jeffersongoncalves/filament-qrcode-field
 Once installed, you can use the QrCodeInput component in your Filament forms:
 
 ```php
- use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
+use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
 
 // In your form definition
 QrCodeInput::make('qrcode')
