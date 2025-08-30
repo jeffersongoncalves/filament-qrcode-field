@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.2 - 2025-08-30
+
+### What's Changed
+
+* build(deps): bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/8
+* build(deps): bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/10
+* Enhance QR code input attributes and scanning logic by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/11
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.0.1...2.0.2
+
 ## 2.0.1 - 2025-07-17
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.0.0...2.0.1
