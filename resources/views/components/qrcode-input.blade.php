@@ -1,3 +1,38 @@
+@php
+    use function Filament\Support\prepare_inherited_attributes;
+    $fieldWrapperView = $getFieldWrapperView();
+    $datalistOptions = $getDatalistOptions();
+    $extraAlpineAttributes = $getExtraAlpineAttributes();
+    $extraAttributeBag = $getExtraAttributeBag();
+    $hasInlineLabel = $hasInlineLabel();
+    $id = $getId();
+    $isConcealed = $isConcealed();
+    $isDisabled = $isDisabled();
+    $statePath = $getStatePath();
+    $placeholder = $getPlaceholder();
+
+    $inputAttributes = $getExtraInputAttributeBag()
+            ->merge($extraAlpineAttributes, escape: false)
+            ->merge([
+                'autofocus' => $isAutofocused(),
+                'disabled' => $isDisabled,
+                'id' => $id,
+                'inputmode' => $getInputMode(),
+                'list' => $datalistOptions ? $id . '-list' : null,
+                'max' => (! $isConcealed) ? $getMaxValue() : null,
+                'maxlength' => (! $isConcealed) ? $getMaxLength() : null,
+                'min' => (! $isConcealed) ? $getMinValue() : null,
+                'minlength' => (! $isConcealed) ? $getMinLength() : null,
+                'placeholder' => filled($placeholder) ? e($placeholder) : null,
+                'readonly' => $isReadOnly(),
+                'required' => $isRequired() && (! $isConcealed),
+                'type' => "text",
+                $applyStateBindingModifiers('wire:model') => $statePath,
+            ], escape: false)
+            ->class([
+                'w-full pr-10',
+            ]);
+@endphp
 <div xmlns:x-filament="http://www.w3.org/1999/html"
      x-load-js="['https://unpkg.com/html5-qrcode']"
      x-data="{
@@ -19,7 +54,7 @@
             this.stopScanning();
         },
         onScanSuccess(decodedText, decodedResult) {
-            $wire.set('{{ $getId() }}', decodedText);
+            $wire.set('{{ $getStatePath() }}', decodedText);
             $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
             this.stopScanning();
         },
@@ -41,15 +76,9 @@
             </label>
         </div>
 
-        <x-filament::input.wrapper>
-            <x-filament::input
-                type="text"
-                name="{{ $getName() }}"
-                id="{{ $getId() }}"
-                value="{{ $getState() }}"
-                placeholder="{{ $getPlaceholder() }}"
-                class="w-full pr-10"
-            />
+        <x-filament::input.wrapper :disabled="$isDisabled" :valid="! $errors->has($statePath)"
+                                   :attributes="prepare_inherited_attributes($extraAttributeBag)->class(['fi-fo-text-input'])">
+            <input {{ $inputAttributes->class(['fi-input']) }} />
 
             <x-slot name="suffix">
                 <!-- Trigger Button for Filament Modal -->
@@ -61,7 +90,7 @@
                         </span>
                     @else
                         <svg class="w-5 h-5 text-gray-400 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 16 16"
+                             version="1.1" viewBox="0 0 16 16"
                              fill="currentColor">
                             <path fill="currentColor" d="M6 0h-6v6h6v-6zM5 5h-4v-4h4v4z"></path>
                             <path fill="currentColor" d="M2 2h2v2h-2v-2z"></path>
