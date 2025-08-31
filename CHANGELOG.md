@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.2 - 2025-08-31
+
+### What's Changed
+
+* chore: Configure Renovate by @renovate[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/3
+* Delete .github/FUNDING.yml by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/6
+* Delete renovate.json by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/7
+* Enhance QR Code Input with Improved Attributes and Modularity by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/12
+
+### New Contributors
+
+* @renovate[bot] made their first contribution in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/3
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/1.1.1...1.1.2
+
 ## 1.1.1 - 2025-06-26
 
 ### What's Changed
