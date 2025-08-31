@@ -1,3 +1,34 @@
+@php
+    use function Filament\Support\prepare_inherited_attributes;
+    $fieldWrapperView = $getFieldWrapperView();
+    $datalistOptions = $getDatalistOptions();
+    $extraAlpineAttributes = $getExtraAlpineAttributes();
+    $extraAttributeBag = $getExtraAttributeBag();
+    $hasInlineLabel = $hasInlineLabel();
+    $id = $getId();
+    $isConcealed = $isConcealed();
+    $isDisabled = $isDisabled();
+    $statePath = $getStatePath();
+    $placeholder = $getPlaceholder();
+
+    $inputAttributes = $getExtraInputAttributeBag()
+        ->merge($extraAlpineAttributes, escape: false)
+        ->merge([
+            'autofocus' => $isAutofocused(),
+            'disabled' => $isDisabled,
+            'id' => $id,
+            'inputmode' => $getInputMode(),
+            'placeholder' => $getPlaceholder(),
+            'readonly' => $isReadOnly(),
+            'required' => $isRequired() && (! $isConcealed),
+            'type' => 'text',
+            $applyStateBindingModifiers('wire:model') => $statePath,
+            'x-bind:type' => 'text',
+        ], escape: false)
+        ->class([
+            'fi-revealable' => $isPasswordRevealable,
+        ]);
+@endphp
 <div xmlns:x-filament="http://www.w3.org/1999/html"
      x-load-js="['https://unpkg.com/html5-qrcode']"
      x-data="{
@@ -41,7 +72,8 @@
             </label>
         </div>
 
-        <x-filament::input.wrapper>
+        <x-filament::input.wrapper :disabled="$isDisabled" :valid="! $errors->has($statePath)"
+                                   :attributes="prepare_inherited_attributes($extraAttributeBag)->class(['fi-fo-text-input'])">
             <x-filament::input
                 type="text"
                 name="{{ $getName() }}"
