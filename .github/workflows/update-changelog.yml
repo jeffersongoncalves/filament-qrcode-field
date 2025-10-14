@@ -63,7 +63,7 @@ jobs:
         run: "echo ${{ steps.changelog-updater.outputs.unreleased_compare_url }}"
 
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           # Push updated CHANGELOG to release target branch.
           branch: ${{ github.event.release.target_commitish }}
