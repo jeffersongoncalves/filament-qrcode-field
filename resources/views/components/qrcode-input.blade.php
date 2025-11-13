@@ -41,6 +41,7 @@
 >
     <div xmlns:x-filament="http://www.w3.org/1999/html"
          x-load-js="['https://unpkg.com/html5-qrcode']"
+         x-on:close-modal.window="stopScanning()"
          x-data="{
         html5QrcodeScanner: null,
         stopScanning() {
@@ -57,17 +58,15 @@
         },
         closeScannerModal() {
             $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
-            this.stopScanning();
         },
         onScanSuccess(decodedText, decodedResult) {
             $wire.set('{{ $getStatePath() }}', decodedText);
-            $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
-            this.stopScanning();
+            this.closeScannerModal();
         },
         startCamera() {
             this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: 10, qrbox: {width: 250, height: 250} }, false);
             this.html5QrcodeScanner.render(this.onScanSuccess.bind(this));
-         }
+        }
      }"
     >
         <div class="grid gap-y-2">
