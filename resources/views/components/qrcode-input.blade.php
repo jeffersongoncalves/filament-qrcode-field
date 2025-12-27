@@ -1,5 +1,6 @@
 @php
     use function Filament\Support\prepare_inherited_attributes;
+
     $fieldWrapperView = $getFieldWrapperView();
     $datalistOptions = $getDatalistOptions();
     $extraAlpineAttributes = $getExtraAlpineAttributes();
@@ -30,7 +31,7 @@
                 $applyStateBindingModifiers('wire:model') => $statePath,
             ], escape: false)
             ->class([
-                'w-full pr-10',
+                'qrcode-field-input',
             ]);
 @endphp
 <x-dynamic-component
@@ -70,22 +71,19 @@
          }
      }"
     >
-        <div class="grid gap-y-2">
+        <div class="qrcode-container">
             <x-filament::input.wrapper :disabled="$isDisabled" :valid="! $errors->has($statePath)"
                                        :attributes="prepare_inherited_attributes($extraAttributeBag)->class(['fi-fo-text-input'])">
                 <input {{ $inputAttributes->class(['fi-input']) }} />
-
                 <x-slot name="suffix">
                     <!-- Trigger Button for Filament Modal -->
-                    <button type="button" @click="openScannerModal()"
-                            class="flex items-center pr-3 focus:outline-hidden"
-                            aria-label="Scan QrCode">
+                    <button type="button" @click="openScannerModal()" class="btn-scan-qrcode" aria-label="Scan QrCode">
                         @if($getExtraAttributes()['icon'] ?? null)
-                            <span class="text-gray-400 dark:text-gray-200">
-                            <x-dynamic-component :component="$getExtraAttributes()['icon']" class="w-5 h-5"/>
-                        </span>
+                            <span class="icon-wrapper">
+                                <x-dynamic-component :component="$getExtraAttributes()['icon']" class="icon-dynamic"/>
+                            </span>
                         @else
-                            <svg class="w-5 h-5 text-gray-400 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
+                            <svg class="icon-dynamic icon-wrapper" xmlns="http://www.w3.org/2000/svg"
                                  version="1.1" viewBox="0 0 16 16"
                                  fill="currentColor">
                                 <path fill="currentColor" d="M6 0h-6v6h6v-6zM5 5h-4v-4h4v4z"></path>
@@ -119,18 +117,16 @@
                     </button>
                 </x-slot>
             </x-filament::input.wrapper>
-
         </div>
-
         <!-- Filament Modal for QrCode Scanner -->
         <x-filament::modal id="qrcode-scanner-modal-{{ $getName() }}" width="lg" :close-by-clicking-away="false">
             <x-slot name="header">
-                <h2 class="text-lg font-semibold">
+                <h2 class="qrcode-scanner-modal-title">
                     Scan {{ $getLabel() ?? 'QrCode' }}
                 </h2>
             </x-slot>
 
-            <div class="p-4">
+            <div class="qrcode-scanner-modal-container">
                 <div id="scanner-container">
                     <div id="reader-{{ $getName() }}" width="600px" height="600px"></div>
                 </div>
