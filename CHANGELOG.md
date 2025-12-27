@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.1 - 2025-12-27
+
+### What's Changed
+
+* fix: add `this` bind to onScanSuccess callback by @wrsbyte in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/15
+
+### New Contributors
+
+* @wrsbyte made their first contribution in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/15
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.1.0...2.1.1
+
 ## 2.1.0 - 2025-12-27
 
 ### What's Changed
