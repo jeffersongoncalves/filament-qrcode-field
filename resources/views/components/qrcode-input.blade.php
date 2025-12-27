@@ -123,13 +123,11 @@
                     Scan {{ $getLabel() ?? 'QrCode' }}
                 </h2>
             </x-slot>
-
             <div class="qrcode-scanner-modal-container">
                 <div id="scanner-container">
                     <div id="reader-{{ $getName() }}" width="600px" height="600px"></div>
                 </div>
             </div>
-
             <x-slot name="footer">
                 <x-filament::button @click="closeScannerModal()" color="danger">
                     Close
