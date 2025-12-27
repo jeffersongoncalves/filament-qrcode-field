@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.1.0 - 2025-12-27
+
+### What's Changed
+
+* build(deps): bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/14
+* build(deps): bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/16
+* build(deps-dev): bump the actions-deps group with 3 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/18
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.0.3...2.1.0
+
 ## 2.0.3 - 2025-09-03
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.0.2...2.0.3
