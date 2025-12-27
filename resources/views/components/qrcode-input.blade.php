@@ -82,9 +82,8 @@
                                 <x-dynamic-component :component="$getExtraAttributes()['icon']" class="icon-dynamic"/>
                             </span>
                         @else
-                            <svg class="icon-dynamic icon-wrapper" xmlns="http://www.w3.org/2000/svg"
-                                 version="1.1" viewBox="0 0 16 16"
-                                 fill="currentColor">
+                            <svg class="icon-dynamic icon-wrapper" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                 viewBox="0 0 16 16" fill="currentColor">
                                 <path fill="currentColor" d="M6 0h-6v6h6v-6zM5 5h-4v-4h4v4z"></path>
                                 <path fill="currentColor" d="M2 2h2v2h-2v-2z"></path>
                                 <path fill="currentColor" d="M0 16h6v-6h-6v6zM1 11h4v4h-4v-4z"></path>
