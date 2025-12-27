@@ -39,6 +39,12 @@
     :has-inline-label="$hasInlineLabel"
     class="fi-fo-text-input-wrp"
 >
+    <style>
+        .filament-qrcode-field-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    </style>
     <div xmlns:x-filament="http://www.w3.org/1999/html"
          x-load-js="['https://unpkg.com/html5-qrcode']"
          x-data="{
@@ -82,10 +88,10 @@
                             aria-label="Scan QrCode">
                         @if($getExtraAttributes()['icon'] ?? null)
                             <span class="text-gray-400 dark:text-gray-200">
-                            <x-dynamic-component :component="$getExtraAttributes()['icon']" class="w-5 h-5"/>
+                            <x-dynamic-component :component="$getExtraAttributes()['icon']" class="filament-qrcode-field-icon" />
                         </span>
                         @else
-                            <svg class="w-5 h-5 text-gray-400 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
+                            <svg class="filament-qrcode-field-icon text-gray-400 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
                                  version="1.1" viewBox="0 0 16 16"
                                  fill="currentColor">
                                 <path fill="currentColor" d="M6 0h-6v6h6v-6zM5 5h-4v-4h4v4z"></path>
