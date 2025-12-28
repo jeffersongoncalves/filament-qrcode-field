@@ -38,10 +38,6 @@ html.dark .icon-wrapper {
     color: #E5E7EB;
 }
 
-html.dark .html5-qrcode-element {
-    background-color: transparent !important;
-}
-
 #reader-barcode__scan_region > img {
     margin: 0 auto !important;
 }
