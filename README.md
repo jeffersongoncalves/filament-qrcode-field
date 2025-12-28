@@ -16,9 +16,9 @@ A Laravel Filament package that provides QR Code field functionality for your we
 
 | Package Version                                                             | Filament Version |
 |-----------------------------------------------------------------------------|------------------|
-| [1.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/1.x) | 3.x              |
-| [2.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/2.x) | 4.x              |
-| [3.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/3.x) | 5.x              |
+| [1.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/1.x) | 1.x              |
+| [2.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/2.x) | 2.x              |
+| [3.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/3.x) | 3.x              |
 
 ## Requirements
 
@@ -33,16 +33,53 @@ You can install the package via composer:
 composer require jeffersongoncalves/filament-qrcode-field:^1.0
 ```
 
-## Usage
+You can publish the config file with:
 
-Once installed, you can use the QrCodeInput component in your Filament forms:
+```bash
+php artisan vendor:publish --tag="filament-qrcode-field-config"
+```
+
+This is the contents of the published config file:
 
 ```php
- use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
+use Filament\Support\Enums\MaxWidth;
+
+return [
+    'asset_js' => 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js',
+    'modal' => [
+        'width' => MaxWidth::Large,
+    ],
+    'reader' => [
+        'width' => '600px',
+        'height' => '600px',
+    ],
+    'scanner' => [
+        'fps' => 10,
+        'width' => 250,
+        'height' => 250,
+    ],
+];
+```
+
+## Usage
+
+Once installed, you can use the `QrCodeInput` component in your Filament forms:
+
+```php
+use JeffersonGoncalves\Filament\QrCodeField\Forms\Components\QrCodeInput;
 
 // In your form definition
 QrCodeInput::make('qrcode')
     ->required(),
+```
+
+### Customizing the Icon
+
+You can customize the scan icon:
+
+```php
+QrCodeInput::make('qrcode')
+    ->icon('heroicon-o-qr-code'),
 ```
 
 ## Testing
