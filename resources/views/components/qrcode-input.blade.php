@@ -65,7 +65,7 @@
             this.closeScannerModal();
         },
         startCamera() {
-            this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: 10, qrbox: {width: 250, height: 250} }, false);
+            this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: 10, qrbox: {width: 250, height: 250 } }, false);
             this.html5QrcodeScanner.render(this.onScanSuccess.bind(this));
         }
      }"
