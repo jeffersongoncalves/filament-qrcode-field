@@ -12,6 +12,14 @@
 
 A Laravel Filament package that provides QR Code field functionality for your web applications. This package extends Filament v3 with a simple QR code input component.
 
+## Compatibility
+
+| Package Version                                                             | Filament Version |
+|-----------------------------------------------------------------------------|------------------|
+| [1.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/1.x) | 3.x              |
+| [2.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/2.x) | 4.x              |
+| [3.x](https://github.com/jeffersongoncalves/filament-qrcode-field/tree/3.x) | 5.x              |
+
 ## Installation
 
 You can install the package via composer:
