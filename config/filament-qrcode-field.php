@@ -11,7 +11,6 @@ return [
         'width' => '600px',
         'height' => '600px',
     ],
-    //
     'scanner' => [
         'fps' => 10,
         'width' => 250,
