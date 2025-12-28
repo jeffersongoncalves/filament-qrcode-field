@@ -41,7 +41,7 @@
     class="fi-fo-text-input-wrp"
 >
     <div xmlns:x-filament="http://www.w3.org/1999/html"
-         x-load-js="['https://unpkg.com/html5-qrcode']"
+         x-load-js="['{{ config('filament-qrcode-field.asset_js') }}']"
          x-on:close-modal.window="stopScanning()"
          x-data="{
         html5QrcodeScanner: null,
@@ -65,7 +65,7 @@
             this.closeScannerModal();
         },
         startCamera() {
-            this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: 10, qrbox: {width: 250, height: 250 } }, false);
+            this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: {{ config('filament-qrcode-field.scanner.fps') }}, qrbox: {width: {{ config('filament-qrcode-field.scanner.width') }}, height: {{ config('filament-qrcode-field.scanner.height') }}} }, false);
             this.html5QrcodeScanner.render(this.onScanSuccess.bind(this));
         }
      }"
@@ -117,7 +117,8 @@
             </x-filament::input.wrapper>
         </div>
         <!-- Filament Modal for QrCode Scanner -->
-        <x-filament::modal id="qrcode-scanner-modal-{{ $getName() }}" width="lg" :close-by-clicking-away="false">
+        <x-filament::modal id="qrcode-scanner-modal-{{ $getName() }}"
+                           width="{{ config('filament-qrcode-field.modal.width') }}" :close-by-clicking-away="false">
             <x-slot name="header">
                 <h2 class="qrcode-scanner-modal-title">
                     Scan {{ $getLabel() ?? 'QrCode' }}
@@ -125,7 +126,8 @@
             </x-slot>
             <div class="qrcode-scanner-modal-container">
                 <div id="scanner-container">
-                    <div id="reader-{{ $getName() }}" width="600px" height="600px"></div>
+                    <div id="reader-{{ $getName() }}" width="{{ config('filament-qrcode-field.reader.width') }}"
+                         height="{{ config('filament-qrcode-field.reader.height') }}"></div>
                 </div>
             </div>
             <x-slot name="footer">
