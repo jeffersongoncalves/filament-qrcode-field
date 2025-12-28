@@ -45,3 +45,105 @@ html.dark .html5-qrcode-element {
 #reader-barcode__scan_region > img {
     margin: 0 auto !important;
 }
+
+button.html5-qrcode-element,
+select.html5-qrcode-element,
+button.scanapp-button {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+    margin-bottom: 5px;
+}
+
+button.html5-qrcode-element:hover,
+select.html5-qrcode-element:hover,
+button.scanapp-button:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+button.html5-qrcode-element:disabled,
+select.html5-qrcode-element:disabled,
+button.scanapp-button:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+button.html5-qrcode-element:active,
+select.html5-qrcode-element:active,
+button.scanapp-button:hover {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+button.html5-qrcode-element:focus,
+select.html5-qrcode-element:focus,
+button.scanapp-button:focus {
+    outline: 1px transparent;
+}
+
+button.html5-qrcode-element:before,
+select.html5-qrcode-element:before,
+button.scanapp-button::before {
+    display: none;
+}
+
+button.html5-qrcode-element:-webkit-details-marker,
+select.html5-qrcode-element:-webkit-details-marker,
+button.scanapp-button:-webkit-details-marker {
+    display: none;
+}
+
+/* Torch button. */
+button#html5-qrcode-button-torch.html5-qrcode-button-torch-on,
+button.scanapp-button.enticing {
+    background-color: #fff000;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 200ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+button#html5-qrcode-button-torch.html5-qrcode-button-torch-on:not(:disabled):hover,
+button#html5-qrcode-button-torch.html5-qrcode-button-torch-on:not(:disabled):focus,
+button.scanapp-button.enticing:not(:disabled):hover,
+button.scanapp-button.enticing:not(:disabled):focus
+{
+    outline: 0;
+    background: #f4e603;
+}
+
+button#html5-qrcode-button-torch.html5-qrcode-button-torch-on:disabled,
+button.scanapp-button.enticing:disabled
+{
+    filter: saturate(0.2) opacity(0.5);
+    -webkit-filter: saturate(0.2) opacity(0.5);
+    cursor: not-allowed;
+}
