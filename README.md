@@ -23,7 +23,7 @@ A Laravel Filament package that provides QR Code field functionality for your we
 ## Requirements
 
 - PHP 8.2 or higher
-- Laravel Filament 4.0 or higher
+- Filament 4.0
 
 ## Installation
 
