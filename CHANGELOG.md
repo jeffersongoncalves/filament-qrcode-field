@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.1 - 2025-12-28
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/3.0.0...3.0.1
+
 ## 3.0.0 - 2025-12-28
 
 **Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/2.1.1...3.0.0
