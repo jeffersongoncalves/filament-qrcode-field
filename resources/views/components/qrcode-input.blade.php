@@ -1,5 +1,6 @@
 @php
     use function Filament\Support\prepare_inherited_attributes;
+
     $fieldWrapperView = $getFieldWrapperView();
     $datalistOptions = $getDatalistOptions();
     $extraAlpineAttributes = $getExtraAlpineAttributes();
@@ -12,22 +13,26 @@
     $placeholder = $getPlaceholder();
 
     $inputAttributes = $getExtraInputAttributeBag()
-        ->merge($extraAlpineAttributes, escape: false)
-        ->merge([
-            'autofocus' => $isAutofocused(),
-            'disabled' => $isDisabled,
-            'id' => $id,
-            'inputmode' => $getInputMode(),
-            'placeholder' => $getPlaceholder(),
-            'readonly' => $isReadOnly(),
-            'required' => $isRequired() && (! $isConcealed),
-            'type' => 'text',
-            $applyStateBindingModifiers('wire:model') => $statePath,
-            'x-bind:type' => 'text',
-        ], escape: false)
-        ->class([
-            'fi-revealable' => $isPasswordRevealable,
-        ]);
+            ->merge($extraAlpineAttributes, escape: false)
+            ->merge([
+                'autofocus' => $isAutofocused(),
+                'disabled' => $isDisabled,
+                'id' => $id,
+                'inputmode' => $getInputMode(),
+                'list' => $datalistOptions ? $id . '-list' : null,
+                'max' => (! $isConcealed) ? $getMaxValue() : null,
+                'maxlength' => (! $isConcealed) ? $getMaxLength() : null,
+                'min' => (! $isConcealed) ? $getMinValue() : null,
+                'minlength' => (! $isConcealed) ? $getMinLength() : null,
+                'placeholder' => filled($placeholder) ? e($placeholder) : null,
+                'readonly' => $isReadOnly(),
+                'required' => $isRequired() && (! $isConcealed),
+                'type' => "text",
+                $applyStateBindingModifiers('wire:model') => $statePath,
+            ], escape: false)
+            ->class([
+                'qrcode-field-input',
+            ]);
 @endphp
 <x-dynamic-component
     :component="$getFieldWrapperView()"
@@ -36,6 +41,7 @@
 >
     <div xmlns:x-filament="http://www.w3.org/1999/html"
          x-load-js="['https://unpkg.com/html5-qrcode']"
+         x-on:close-modal.window="stopScanning()"
          x-data="{
         html5QrcodeScanner: null,
         stopScanning() {
@@ -52,52 +58,31 @@
         },
         closeScannerModal() {
             $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
-            this.stopScanning();
         },
         onScanSuccess(decodedText, decodedResult) {
-            $wire.set('{{ $getId() }}', decodedText);
-            $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
-            this.stopScanning();
+            $wire.set('{{ $getStatePath() }}', decodedText);
+            this.closeScannerModal();
         },
         startCamera() {
             this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: 10, qrbox: {width: 250, height: 250} }, false);
-            this.html5QrcodeScanner.render(this.onScanSuccess);
-         }
+            this.html5QrcodeScanner.render(this.onScanSuccess.bind(this));
+        }
      }"
     >
-        <div class="grid gap-y-2">
-            <x-slot
-                name="label"
-                @class([
-                    'sm:pt-1.5' => $hasInlineLabel,
-                ])
-            >
-                {{ $getLabel() }}
-            </x-slot>
-
+        <div class="qrcode-container">
             <x-filament::input.wrapper :disabled="$isDisabled" :valid="! $errors->has($statePath)"
                                        :attributes="prepare_inherited_attributes($extraAttributeBag)->class(['fi-fo-text-input'])">
-                <x-filament::input
-                    type="text"
-                    name="{{ $getName() }}"
-                    id="{{ $getId() }}"
-                    value="{{ $getState() }}"
-                    placeholder="{{ $getPlaceholder() }}"
-                    class="w-full pr-10"
-                />
-
+                <input {{ $inputAttributes->class(['fi-input']) }} />
                 <x-slot name="suffix">
                     <!-- Trigger Button for Filament Modal -->
-                    <button type="button" @click="openScannerModal()" class="flex items-center pr-3 focus:outline-none"
-                            aria-label="Scan QrCode">
+                    <button type="button" @click="openScannerModal()" class="btn-scan-qrcode" aria-label="Scan QrCode">
                         @if($getExtraAttributes()['icon'] ?? null)
-                            <span class="text-gray-400 dark:text-gray-200">
-                            <x-dynamic-component :component="$getExtraAttributes()['icon']" class="w-5 h-5"/>
-                        </span>
+                            <span class="icon-wrapper">
+                                <x-dynamic-component :component="$getExtraAttributes()['icon']" class="icon-dynamic"/>
+                            </span>
                         @else
-                            <svg class="w-5 h-5 text-gray-400 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg"
-                                 version="1.1" viewBox="0 0 16 16"
-                                 fill="currentColor">
+                            <svg class="icon-dynamic icon-wrapper" xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                 viewBox="0 0 16 16" fill="currentColor">
                                 <path fill="currentColor" d="M6 0h-6v6h6v-6zM5 5h-4v-4h4v4z"></path>
                                 <path fill="currentColor" d="M2 2h2v2h-2v-2z"></path>
                                 <path fill="currentColor" d="M0 16h6v-6h-6v6zM1 11h4v4h-4v-4z"></path>
@@ -129,23 +114,19 @@
                     </button>
                 </x-slot>
             </x-filament::input.wrapper>
-
         </div>
-
         <!-- Filament Modal for QrCode Scanner -->
         <x-filament::modal id="qrcode-scanner-modal-{{ $getName() }}" width="lg" :close-by-clicking-away="false">
             <x-slot name="header">
-                <h2 class="text-lg font-semibold">
+                <h2 class="qrcode-scanner-modal-title">
                     Scan {{ $getLabel() ?? 'QrCode' }}
                 </h2>
             </x-slot>
-
-            <div class="p-4">
+            <div class="qrcode-scanner-modal-container">
                 <div id="scanner-container">
                     <div id="reader-{{ $getName() }}" width="600px" height="600px"></div>
                 </div>
             </div>
-
             <x-slot name="footer">
                 <x-filament::button @click="closeScannerModal()" color="danger">
                     Close

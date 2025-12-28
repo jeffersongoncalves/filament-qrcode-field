@@ -1,0 +1,12 @@
+{
+    "private": true,
+    "scripts": {
+        "build": "postcss resources/css/index.css -o resources/dist/filament-qrcode-field.css"
+    },
+    "devDependencies": {
+        "cssnano": "^7.1.2",
+        "postcss": "^8.4.27",
+        "postcss-cli": "^11.0.1",
+        "postcss-nesting": "^13.0.2"
+    }
+}
