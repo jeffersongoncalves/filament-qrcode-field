@@ -1,6 +1,5 @@
 @php
     use function Filament\Support\prepare_inherited_attributes;
-
     $fieldWrapperView = $getFieldWrapperView();
     $datalistOptions = $getDatalistOptions();
     $extraAlpineAttributes = $getExtraAlpineAttributes();
@@ -13,26 +12,22 @@
     $placeholder = $getPlaceholder();
 
     $inputAttributes = $getExtraInputAttributeBag()
-            ->merge($extraAlpineAttributes, escape: false)
-            ->merge([
-                'autofocus' => $isAutofocused(),
-                'disabled' => $isDisabled,
-                'id' => $id,
-                'inputmode' => $getInputMode(),
-                'list' => $datalistOptions ? $id . '-list' : null,
-                'max' => (! $isConcealed) ? $getMaxValue() : null,
-                'maxlength' => (! $isConcealed) ? $getMaxLength() : null,
-                'min' => (! $isConcealed) ? $getMinValue() : null,
-                'minlength' => (! $isConcealed) ? $getMinLength() : null,
-                'placeholder' => filled($placeholder) ? e($placeholder) : null,
-                'readonly' => $isReadOnly(),
-                'required' => $isRequired() && (! $isConcealed),
-                'type' => "text",
-                $applyStateBindingModifiers('wire:model') => $statePath,
-            ], escape: false)
-            ->class([
-                'qrcode-field-input',
-            ]);
+        ->merge($extraAlpineAttributes, escape: false)
+        ->merge([
+            'autofocus' => $isAutofocused(),
+            'disabled' => $isDisabled,
+            'id' => $id,
+            'inputmode' => $getInputMode(),
+            'placeholder' => $getPlaceholder(),
+            'readonly' => $isReadOnly(),
+            'required' => $isRequired() && (! $isConcealed),
+            'type' => 'text',
+            $applyStateBindingModifiers('wire:model') => $statePath,
+            'x-bind:type' => 'text',
+        ], escape: false)
+        ->class([
+            'fi-revealable' => $isPasswordRevealable,
+        ]);
 @endphp
 <x-dynamic-component
     :component="$getFieldWrapperView()"
@@ -60,7 +55,7 @@
             $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
         },
         onScanSuccess(decodedText, decodedResult) {
-            $wire.set('{{ $getStatePath() }}', decodedText);
+            $wire.set('{{ $getId() }}', decodedText);
             this.closeScannerModal();
         },
         startCamera() {
@@ -70,9 +65,19 @@
      }"
     >
         <div class="qrcode-container">
+            <x-slot
+                name="label"
+                @class([
+                    'sm:pt-1.5' => $hasInlineLabel,
+                ])
+            >
+                {{ $getLabel() }}
+            </x-slot>
+
             <x-filament::input.wrapper :disabled="$isDisabled" :valid="! $errors->has($statePath)"
                                        :attributes="prepare_inherited_attributes($extraAttributeBag)->class(['fi-fo-text-input'])">
-                <input {{ $inputAttributes->class(['fi-input']) }} />
+                <x-filament::input type="text" name="{{ $getName() }}" id="{{ $getId() }}" value="{{ $getState() }}"
+                                   placeholder="{{ $getPlaceholder() }}" class="qrcode-field-input"/>
                 <x-slot name="suffix">
                     <!-- Trigger Button for Filament Modal -->
                     <button type="button" @click="openScannerModal()" class="btn-scan-qrcode" aria-label="Scan QrCode">
