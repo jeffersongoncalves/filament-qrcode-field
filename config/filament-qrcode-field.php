@@ -1,9 +1,11 @@
 <?php
 
+use Filament\Support\Enums\MaxWidth;
+
 return [
     'asset_js' => 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js',
     'modal' => [
-        'width' => 'lg',
+        'width' => MaxWidth::Large,
     ],
     'reader' => [
         'width' => '600px',
