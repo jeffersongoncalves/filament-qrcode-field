@@ -41,3 +41,7 @@ html.dark .icon-wrapper {
 html.dark .html5-qrcode-element {
     background-color: transparent !important;
 }
+
+#reader-barcode__scan_region > img {
+    margin: 0 auto !important;
+}
