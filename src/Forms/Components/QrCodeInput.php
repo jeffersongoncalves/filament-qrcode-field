@@ -12,7 +12,7 @@ class QrCodeInput extends TextInput
     {
         parent::setUp();
 
-        $this->placeholder('Enter '.strtolower($this->getLabel()).'...');
+        $this->placeholder(fn (QrCodeInput $component) => __('filament-qrcode-field::qrcode-field.labels.placeholder', ['label' => strtolower($component->getLabel())]));
     }
 
     public function icon(string $icon): static

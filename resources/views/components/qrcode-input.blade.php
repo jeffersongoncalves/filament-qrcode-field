@@ -75,7 +75,7 @@
                                    placeholder="{{ $getPlaceholder() }}" class="qrcode-field-input"/>
                 <x-slot name="suffix">
                     <!-- Trigger Button for Filament Modal -->
-                    <button type="button" @click="openScannerModal()" class="btn-scan-qrcode" aria-label="Scan QrCode">
+                    <button type="button" @click="openScannerModal()" class="btn-scan-qrcode" aria-label="{{ __('filament-qrcode-field::qrcode-field.labels.scan') }} {{ __('filament-qrcode-field::qrcode-field.labels.qrcode') }}">
                         @if($getExtraAttributes()['icon'] ?? null)
                             <span class="icon-wrapper">
                                 <x-dynamic-component :component="$getExtraAttributes()['icon']" class="icon-dynamic"/>
@@ -120,7 +120,7 @@
                            width="{{ config('filament-qrcode-field.modal.width') }}" :close-by-clicking-away="false">
             <x-slot name="header">
                 <h2 class="qrcode-scanner-modal-title">
-                    Scan {{ $getLabel() ?? 'QrCode' }}
+                    {{ __('filament-qrcode-field::qrcode-field.labels.scan') }} {{ $getLabel() ?? __('filament-qrcode-field::qrcode-field.labels.qrcode') }}
                 </h2>
             </x-slot>
             <div class="qrcode-scanner-modal-container">
@@ -131,7 +131,7 @@
             </div>
             <x-slot name="footer">
                 <x-filament::button @click="closeScannerModal()" color="danger">
-                    Close
+                    {{ __('filament-qrcode-field::qrcode-field.labels.close') }}
                 </x-filament::button>
             </x-slot>
         </x-filament::modal>

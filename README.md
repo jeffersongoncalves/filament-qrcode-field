@@ -61,6 +61,35 @@ return [
 ];
 ```
 
+## Translations
+
+This package supports multiple languages. The following languages are currently available:
+
+- Arabic (`ar`)
+- Czech (`cs`)
+- German (`de`)
+- English (`en`)
+- Spanish (`es`)
+- Persian (`fa`)
+- French (`fr`)
+- Hebrew (`he`)
+- Indonesian (`id`)
+- Italian (`it`)
+- Japanese (`ja`)
+- Dutch (`nl`)
+- Polish (`pl`)
+- Portuguese (`pt`)
+- Portuguese (Brazil) (`pt_BR`)
+- Portuguese (Portugal) (`pt_PT`)
+- Slovak (`sk`)
+- Turkish (`tr`)
+
+If you want to customize the translations, you can publish the language files:
+
+```bash
+php artisan vendor:publish --tag=filament-qrcode-field-translations
+```
+
 ## Usage
 
 Once installed, you can use the `QrCodeInput` component in your Filament forms:
