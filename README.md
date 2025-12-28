@@ -30,7 +30,7 @@ A Laravel Filament package that provides QR Code field functionality for your we
 You can install the package via composer:
 
 ```bash
-composer require jeffersongoncalves/filament-qrcode-field
+composer require jeffersongoncalves/filament-qrcode-field:^1.0
 ```
 
 ## Usage
