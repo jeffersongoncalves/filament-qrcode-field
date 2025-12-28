@@ -33,6 +33,34 @@ You can install the package via composer:
 composer require jeffersongoncalves/filament-qrcode-field:^3.0
 ```
 
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --tag="filament-qrcode-field-config"
+```
+
+This is the contents of the published config file:
+
+```php
+use Filament\Support\Enums\Width;
+
+return [
+    'asset_js' => 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js',
+    'modal' => [
+        'width' => Width::Large,
+    ],
+    'reader' => [
+        'width' => '600px',
+        'height' => '600px',
+    ],
+    'scanner' => [
+        'fps' => 10,
+        'width' => 250,
+        'height' => 250,
+    ],
+];
+```
+
 ## Usage
 
 Once installed, you can use the QrCodeInput component in your Filament forms:

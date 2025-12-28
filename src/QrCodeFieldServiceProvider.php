@@ -13,6 +13,7 @@ class QrCodeFieldServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('filament-qrcode-field')
+            ->hasConfigFile()
             ->hasViews();
     }
 
