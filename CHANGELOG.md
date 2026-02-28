@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.3 - 2026-02-28
+
+### Bug Fixes
+
+- Fix camera not reopening for second QR scan (#5)
+- Improve QR code version 10 scanning reliability (#9)
+- Replace `Html5QrcodeScanner` with `Html5Qrcode` for direct camera lifecycle control
+- Add `experimentalFeatures.useBarCodeDetectorIfSupported` for better scanning
+- Stop camera before closing modal to prevent `AbortError`
+- Clean reader DOM element before re-initializing scanner
+- Use versioned CDN URL from config instead of unversioned unpkg URL
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/3.0.2...3.0.3
+
 ## 3.0.2 - 2026-02-24
 
 ### What's Changed
