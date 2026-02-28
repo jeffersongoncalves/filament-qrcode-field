@@ -37,22 +37,26 @@
 >
     <div xmlns:x-filament="http://www.w3.org/1999/html"
          x-load-js="['{{ config('filament-qrcode-field.asset_js') }}']"
-         x-on:close-modal.window="stopScanning()"
          x-data="{
-        html5QrcodeScanner: null,
-        stopScanning() {
-           if(!this.html5QrcodeScanner) {
-               return;
-           }
-           this.html5QrcodeScanner.pause();
-           this.html5QrcodeScanner.clear();
-           this.html5QrcodeScanner = null;
+        html5Qrcode: null,
+        scanning: false,
+        async stopScanning() {
+            if (!this.html5Qrcode) return;
+            try {
+                if (this.scanning) {
+                    await this.html5Qrcode.stop();
+                    this.scanning = false;
+                }
+                this.html5Qrcode.clear();
+            } catch (e) {}
+            this.html5Qrcode = null;
         },
         openScannerModal() {
             $dispatch('open-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
-            this.startCamera();
+            this.$nextTick(() => this.startCamera());
         },
-        closeScannerModal() {
+        async closeScannerModal() {
+            await this.stopScanning();
             $dispatch('close-modal', { id: 'qrcode-scanner-modal-{{ $getName() }}' });
         },
         onScanSuccess(decodedText, decodedResult) {
@@ -60,8 +64,19 @@
             this.closeScannerModal();
         },
         startCamera() {
-            this.html5QrcodeScanner = new Html5QrcodeScanner('reader-{{ $getName() }}', { fps: {{ config('filament-qrcode-field.scanner.fps') }}, qrbox: {width: {{ config('filament-qrcode-field.scanner.width') }}, height: {{ config('filament-qrcode-field.scanner.height') }}} }, false);
-            this.html5QrcodeScanner.render(this.onScanSuccess.bind(this));
+            const readerId = 'reader-{{ $getName() }}';
+            const readerEl = document.getElementById(readerId);
+            if (readerEl) readerEl.innerHTML = '';
+            this.html5Qrcode = new Html5Qrcode(readerId);
+            this.html5Qrcode.start(
+                { facingMode: 'environment' },
+                { fps: {{ config('filament-qrcode-field.scanner.fps') }}, qrbox: { width: {{ config('filament-qrcode-field.scanner.width') }}, height: {{ config('filament-qrcode-field.scanner.height') }} }, experimentalFeatures: { useBarCodeDetectorIfSupported: true } },
+                this.onScanSuccess.bind(this)
+            ).then(() => {
+                this.scanning = true;
+            }).catch((err) => {
+                console.error('QR Scanner start error:', err);
+            });
         }
      }"
     >
