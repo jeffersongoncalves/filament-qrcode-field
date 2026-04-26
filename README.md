@@ -1,6 +1,6 @@
 <div class="filament-hidden">
 
-![Filament Qrcode Field](https://raw.githubusercontent.com/jeffersongoncalves/filament-qrcode-field/2.x/art/jeffersongoncalves-filament-qrcode-field.jpg)
+![Filament Qrcode Field](https://raw.githubusercontent.com/jeffersongoncalves/filament-qrcode-field/2.x/art/jeffersongoncalves-filament-qrcode-field.png)
 
 </div>
 
