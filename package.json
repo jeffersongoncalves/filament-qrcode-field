@@ -8,6 +8,6 @@
         "postcss": "^8.5.26",
         "postcss-cli": "^11.0.1",
         "postcss-nesting": "^14.0.1",
-        "svgo": "^4.0.2"
+        "svgo": "^4.1.0"
     }
 }
