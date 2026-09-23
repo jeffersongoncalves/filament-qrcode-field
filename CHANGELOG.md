@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.0 - 2026-09-23
+
+### What's new
+
+- **Translations:** 6 new locales (az, hi, ru, uk, uz, zh_CN). (#80)
+
+Thanks to @Elvin-Qulizade (Elvin Qulizada) for the i18n initiative behind these translations — first contributed in jeffersongoncalves/filament-scanner-guard#2 and now rolled out across the Filament plugins. He is credited as co-author.
+
+### What's Changed
+
+* docs: add Buy Me a Coffee sponsor link by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/62
+* chore: add Buy Me a Coffee to FUNDING.yml by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/65
+* ci: standardize update-changelog workflow (1.x) by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/72
+* build(deps): bump the actions-deps group with 4 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/77
+* build(deps-dev): bump the npm-deps group with 4 updates by @dependabot[bot] in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/78
+* feat(i18n): add translations (1.x) by @jeffersongoncalves in https://github.com/jeffersongoncalves/filament-qrcode-field/pull/80
+
+**Full Changelog**: https://github.com/jeffersongoncalves/filament-qrcode-field/compare/1.2.2...1.3.0
+
 ## 1.2.2 - 2026-02-28
 
 ### Bug Fixes
